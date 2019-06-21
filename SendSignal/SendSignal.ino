@@ -1,21 +1,25 @@
 #include <SoftwareSerial.h>
 
-SoftwareSerial BTSerial(2,3);
-
+SoftwareSerial BTSerial(2, 3);
+String BTString="";
+ 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(9600); 
   BTSerial.begin(9600);
-  Serial.println("chech-!\n");
-  BTSerial.println("cheack-!\n");
+ 
 }
-
+ 
 void loop() {
-  while(BTSerial.available() && serial.available()) {
-    char c = BTSerial.read();
+  while(BTSerial.available()){
+    char BTChar = (char)BTSerial.read();
+    BTString+=BTChar;
     delay(5);
+  }
+  if(!BTString.equals("")) {
+    if(BTString == "a") {
+      BTSerial.println("asdf");
     }
-    if(c == 'a') {
-      BTSerial.println('a');
-      c = '';
-    }
+    Serial.println(BTString);
+    BTString="";
+  }
 }
