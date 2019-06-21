@@ -2,7 +2,8 @@
 
 SoftwareSerial BTSerial(2, 3);
 String BTString="";
- 
+int led = 4;
+
 void setup() {
   Serial.begin(9600); 
   BTSerial.begin(9600);
@@ -18,6 +19,10 @@ void loop() {
   if(!BTString.equals("")) {
     if(BTString == "a") {
       BTSerial.println("asdf");
+      digitalWrite(led, HIGH);
+    }
+    if(BTSerial == "b") {
+      digitalWrite(led, LOW);
     }
     Serial.println(BTString);
     BTString="";
